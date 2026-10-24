@@ -1,0 +1,18 @@
+{
+  "simulation": {
+    "M1": "MPC",
+    "M2": "MPC-DO",
+    "M3a": "MPC-APDO",
+    "XieAd": "MPC with adaptive frequency",
+    "Xie": "MPC with fixed frequency",
+    "M4": "MPC-APDO (preview)",
+    "M5": "MPC-DS"
+  },
+  "flight": {
+    "PID": "PID",
+    "LADRC": "LADRC",
+    "NoLearn": "MPC-DS w/o LR",
+    "Proposed": "MPC-DS (Proposed)"
+  },
+  "internal_ids": "Internal identifiers are retained only in code and frozen data for traceability."
+}

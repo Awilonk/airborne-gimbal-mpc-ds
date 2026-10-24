@@ -1,0 +1,66 @@
+{
+  "state": "User-approved naming rule: MPC first; included in v6",
+  "window_s": [
+    5,
+    28
+  ],
+  "units": "degree",
+  "joint_formula": "sqrt(mean(error_yaw_deg**2 + error_pitch_deg**2))",
+  "joint_metric_interpretation": "RMSE of synchronous distance in the yaw-pitch angular coordinate plane; no division by two",
+  "previous_figure_size_in": [
+    7.12,
+    4.5
+  ],
+  "candidate_figure_size_in": [
+    7.12,
+    3.65
+  ],
+  "height_reduction_pct": 18.88888888888889,
+  "filtering": false,
+  "resampling": false,
+  "source_hashes": {
+    "ladrc.csv": "5fc9ca2001c50ee82e4707228cade217141c5340151255ddb49fdf47e2d29a73",
+    "nolearn.csv": "48a3f1ee611b6799ed0855a8354aeafec8eb4e2725dd4e0ce166365bfe3959bf",
+    "pid.csv": "5c4bbc7d712938918a2bf1b5ffcb3f936e47547a92b58546d934042337c018b7",
+    "proposed.csv": "82be405a121b300ece454941de878ce0ad43e392acb200b57859d20d7492618a"
+  },
+  "methods": [
+    {
+      "raw_method": "PID",
+      "candidate_name": "PID",
+      "samples": 1148,
+      "yaw_rmse_deg": 1.823876457034975,
+      "pitch_rmse_deg": 1.4540271688650717,
+      "two_axis_rmse_deg": 2.332535174080818
+    },
+    {
+      "raw_method": "LADRC",
+      "candidate_name": "LADRC",
+      "samples": 1148,
+      "yaw_rmse_deg": 1.028732812685642,
+      "pitch_rmse_deg": 0.6461947150654553,
+      "two_axis_rmse_deg": 1.21484929504636
+    },
+    {
+      "raw_method": "NoLearn",
+      "candidate_name": "MPC-DS w/o LR",
+      "samples": 1144,
+      "yaw_rmse_deg": 0.8408046960313494,
+      "pitch_rmse_deg": 0.3633903250431501,
+      "two_axis_rmse_deg": 0.915972196741439
+    },
+    {
+      "raw_method": "Proposed",
+      "candidate_name": "MPC-DS (Proposed)",
+      "samples": 1145,
+      "yaw_rmse_deg": 0.7702489561072261,
+      "pitch_rmse_deg": 0.3497060725589879,
+      "two_axis_rmse_deg": 0.8459183125863294
+    }
+  ],
+  "outputs": [
+    "D:\\00-Phd\\00-Papers\\2026AST\\03-复现仓库\\airborne-gimbal-mpc-ds\\figures\\fig_hover_v6_20261024_lyk.pdf",
+    "D:\\00-Phd\\00-Papers\\2026AST\\03-复现仓库\\airborne-gimbal-mpc-ds\\figures\\fig_hover_v6_20261024_lyk.svg",
+    "D:\\00-Phd\\00-Papers\\2026AST\\03-复现仓库\\airborne-gimbal-mpc-ds\\figures\\fig_hover_v6_20261024_lyk.png"
+  ]
+}

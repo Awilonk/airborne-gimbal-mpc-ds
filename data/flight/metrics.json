@@ -1,0 +1,48 @@
+{
+  "window_s": [
+    5,
+    28
+  ],
+  "methods": [
+    {
+      "method": "PID",
+      "raw_id": "PID",
+      "file": "data/flight/pid.csv",
+      "samples": 1148,
+      "yaw_rmse_deg": 1.823876457034975,
+      "pitch_rmse_deg": 1.4540271688650717,
+      "two_axis_rmse_deg": 2.332535174080818
+    },
+    {
+      "method": "LADRC",
+      "raw_id": "LADRC",
+      "file": "data/flight/ladrc.csv",
+      "samples": 1148,
+      "yaw_rmse_deg": 1.028732812685642,
+      "pitch_rmse_deg": 0.6461947150654553,
+      "two_axis_rmse_deg": 1.21484929504636
+    },
+    {
+      "method": "MPC-DS w/o LR",
+      "raw_id": "NoLearn",
+      "file": "data/flight/nolearn.csv",
+      "samples": 1144,
+      "yaw_rmse_deg": 0.8408046960313494,
+      "pitch_rmse_deg": 0.3633903250431501,
+      "two_axis_rmse_deg": 0.915972196741439
+    },
+    {
+      "method": "MPC-DS (Proposed)",
+      "raw_id": "Proposed",
+      "file": "data/flight/proposed.csv",
+      "samples": 1145,
+      "yaw_rmse_deg": 0.7702489561072261,
+      "pitch_rmse_deg": 0.3497060725589879,
+      "two_axis_rmse_deg": 0.8459183125863294
+    }
+  ],
+  "each_method_trials": 1,
+  "pid_batch": "20261024_075057_2d8051",
+  "other_methods_batch": "20261024_064935_644145",
+  "metric_scope": "Origin-relative gimbal angular tracking, not independently calibrated inertial LOS"
+}

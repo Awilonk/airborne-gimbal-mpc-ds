@@ -1,0 +1,146 @@
+{
+  "method": "Proposed-Paper40-real",
+  "axes": [
+    "yaw",
+    "pitch"
+  ],
+  "duration_s": 30,
+  "tracking_profile_id": "high_dynamic_20261024_a8_f0p6_quadrature",
+  "require_tracking_ground_acceptance": true,
+  "reference_phase_rad": [
+    0.0,
+    1.5707963267948966
+  ],
+  "tracking_injection": {
+    "fundamental_levels": 6.0,
+    "second_harmonic_levels": 2.0,
+    "step_levels": 3.0,
+    "base_hz": 0.5,
+    "after_switch_hz": 0.8,
+    "switch_time_s": 15.0
+  },
+  "tracking_limits": {
+    "actual_level_limit": 90,
+    "nominal_input_max": 100.0,
+    "angular_rate_limit_deg_s": 60.0,
+    "mechanical_envelope_half_deg": [
+      10.0,
+      10.0
+    ]
+  },
+  "pre_deg": 0,
+  "reference_amplitude_deg": [
+    8.0,
+    8.0
+  ],
+  "reference_w_rad_s": [
+    3.7699111843077517,
+    3.7699111843077517
+  ],
+  "mechanical_envelope_half_deg": [
+    6.0,
+    4.5
+  ],
+  "mission_fov_half_deg": [
+    4.0,
+    3.0
+  ],
+  "compute_limit_ms": 15,
+  "feedback_estimator": {
+    "kind": "angle_input_observer_v1",
+    "scope": "angle_hold_only",
+    "hold_bandwidth_rad_s": 18.0,
+    "network_features": "raw_calibrated_sdk",
+    "raw_rate_guard": true
+  },
+  "weights": "paper40_lead_real_finetuned.npz",
+  "eps_max": [
+    2.0,
+    2.0
+  ],
+  "eps_rate": [
+    80.0,
+    80.0
+  ],
+  "identified": {
+    "yaw": {
+      "rate_calibration": {
+        "scale": 0.11003524967187199,
+        "bias": 0.03616991319963859,
+        "integrated_angle_r2": 0.9513975032163177,
+        "method": "angle increments vs integrated raw rate + bias, using training trajectories only"
+      },
+      "model": {
+        "K": 1.2490523318339561,
+        "tau": 0.19573023683822874,
+        "Td": 0.06,
+        "nd": 3,
+        "deadzone": 4.5,
+        "c": 0.009240863717513585,
+        "train_rate_rmse": 0.8840920468687276
+      },
+      "validation": {
+        "rate_rmse_deg_s": 0.7785283406590083,
+        "rate_r2": 0.6971079925387333
+      },
+      "validation_used_for_fit": false,
+      "accepted": true
+    },
+    "pitch": {
+      "rate_calibration": {
+        "scale": 0.10929336593461678,
+        "bias": -0.029715209306707735,
+        "integrated_angle_r2": 0.9923167027608824,
+        "method": "angle increments vs integrated raw rate + bias, using training trajectories only"
+      },
+      "model": {
+        "K": 1.438661277785457,
+        "tau": 0.2432601966383159,
+        "Td": 0.04,
+        "nd": 2,
+        "deadzone": 4.5,
+        "c": 0.0009446621377036541,
+        "train_rate_rmse": 0.8978581771928429
+      },
+      "validation": {
+        "rate_rmse_deg_s": 0.7338246055859055,
+        "rate_r2": 0.7154991861096037
+      },
+      "validation_used_for_fit": false,
+      "accepted": true
+    }
+  },
+  "paper_version": "main_v2_20261022.tex",
+  "paper_sha256": "862aad0cdd2bdd846c89592c6ee05347075a4b0eb87781745d03b45542b6b8ca",
+  "adaptation": "J_eq=tau/K, H_eq=-omega/K, explicit delayed H residual and actual command hard bound; not motor torque",
+  "input_labels": "actual integer speed levels, both axes; only ground operation",
+  "video_off_at_start": true,
+  "mpc_r": 0.001,
+  "actual_level_limit": 15,
+  "engineering_baseline_status": "model_tuned_pending_independent_ground_acceptance",
+  "engineering_baselines": {
+    "PID": {
+      "closed_loop_rad_s": 8.0,
+      "damping_ratio": 1.2,
+      "integral_pole_ratio": 0.25,
+      "reference_feedforward": false,
+      "acceleration_feedforward": false
+    },
+    "LADRC": {
+      "angle_bandwidth_rad_s": 4.0,
+      "rate_bandwidth_rad_s": 16.0,
+      "observer_bandwidth_rad_s": 48.0,
+      "acceleration_feedforward": true
+    },
+    "MPC": {
+      "Np": 20,
+      "Nc": 3,
+      "q_th": 1.0,
+      "q_om": 0.0,
+      "r": 0.001,
+      "p_term": 1.0,
+      "soft_penalty": 1000.0
+    }
+  },
+  "gru_weights": "paper40_gru_real_finetuned.npz"
+}

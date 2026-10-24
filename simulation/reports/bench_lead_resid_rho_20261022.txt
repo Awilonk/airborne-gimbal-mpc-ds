@@ -1,0 +1,87 @@
+[drift 版: M5 均带 kappa=4, L=50] 残差超前预测器 lead='lstmr' 的闭环对比(以 lin 为基线), 2026-10-22 lyk。
+
+    python bench_lead_resid.py [--jobs 14] [--out bench_lead_resid_rho_20261022.txt]
+
+lstmr: Delta_raw = Delta_lin + eps_gain * Pi_rate(Pi_mag(eps_hat)), eps_hat = 网络(psi_k, Delta_lin(k)),
+  训练目标 eps = D* - Delta_lin(train_lead_resid.py, lead_lstmr_sim.npz, fc 固定为训练时的 C-lin 值
+  nom 5 Hz / cal 2 Hz); 之后与其他 lead 一样 Pi_Dmax / rate / beta / sat_30。
+  网格 wo x beta {0.5,1} x eps_gain {0.5,1}。D_max/delta_D 用与 C-lin 相同的 6.0/116.0(npz meta 为 5.97/116.3),
+  这样 eps_gain=0 与同参数 C-lin 逐位相同。
+  消融 R0 = lstmr 调出的同一组参数下 eps_gain=0(即该参数下的 lin 超前, 不重调)。
+M5-noLSTM / B-lstmd-sim / C-lin 网格与 bench_lead.py 相同(重跑, 应复现 bench_lead_20261022.txt)。
+以下为 bench_lead.py 原说明:
+
+假设: 对象输入延迟 n_d=3 拍, 闭环残差 w_k = d_r,k - d_r^c_{k-n_d}, 其中 n_d Ts delta_r 项线性 DO 去不掉。
+做法: DO 仍以当前时刻估计运行(d_ff = d_L,now, 误差分析不变), 只在补偿里加超前修正
+    d_r^c_k = sat_30( d_hat_r,k + beta * Pi(Delta_k) ),  |Delta| <= D_max, |dDelta/dt| <= delta_D
+  A  M5+lead-LSTM2  两头网络 [d_r(k), d_r(k+3)], now 头(投影, x alpha)作 d_ff, Delta = lead - now
+  B  M5+lead-LSTMd  单头网络直接预测 Delta = d_r(k+3) - d_r(k); d_ff 无, 或用现有 LSTMsim(ff=L)
+  C  M5+lead-lin    不学习: Delta = 3 * LPF_fc(d_hat_r,k - d_hat_r,k-1)
+网络: train_lead.py(lstm_data_sim/real, seed 0-7 训练 8-9 验证), 权重冻结。
+调参 seed 0-2, f0 {0.5,1,1.5,2} x {steady, switch}, 每环境每方法一组参数(最小平均 RMSE):
+  M5-noLSTM    wo in {5,10,20,28,40,56}
+  M5+LSTMsim   固定为 bench_lstm_retune 的最优(nom 56/1/1, cal 5/2/0.5), 同一 seed 0-2 调出
+  A            wo x beta {0.5,1} x alpha {0,1}       (alpha=0: 只有超前修正, 无学习 d_ff)
+  B            wo x beta {0.5,1} x ff {无, LSTMsim(倍数1, alpha1)}
+  C            wo x beta {0.5,1} x fc {2,5} Hz
+  A/B 另有真机权重(-real)版本, 同网格。
+测试 seed 100-104 (40 例/环境), 基准 = 重调 M5-noLSTM。
+
+离线超前预测(train_lead.py 验证集, D* = y(k+3) - y(k), 级; 括号内为相对零阶保持 Delta=0):
+  [sim/lstmd] 验证 D*=y(k+3)-y(k) RMSE(级): 零阶保持 1.109 | LSTM 1.013 (91%) | 线性外推(y 零相位, fc2) 1.110 (100%) | (y, fc5) 1.010 (91%)
+  [sim/lstmr] 验证 D*=y(k+3)-y(k) RMSE(级, 32 条, 因果): 零阶保持 1.109 | lin 1.494 (135%) (Pi_Dmax 后 1.483 (134%)) | lstmd 1.013 (91%) | lstmr 1.025 (92%) (不投影 1.025 (92%)) | 均按 Pi_Dmax=5.97, eps_max=8.88
+  分环境: nom: ZOH 0.876 lin 1.607 lstmd 0.750 lstmr 0.801 | cal: ZOH 1.301 lin 1.348 lstmd 1.221 lstmr 1.208
+  一致性 torch(CPU float64) vs numpy max|diff| = 2.06e-07
+  注: "线性外推(y 零相位)" 用的是非因果零相位目标本身做差分, 对 C 偏乐观; "now 头" 为因果估计上的外推。
+
+== [nom] 调参 seed 0-2 (24 例/组), 累计 334 s
+  M5-noLSTM     最优 {'wo': 56}                           RMSE 0.0992 | 各 wo 最好: 5:0.1337 10:0.1167 20:0.1072 28:0.1044 40:0.1001 56:0.0992
+  B-lstmd-sim   最优 {'wo': 56, 'beta': 1.0, 'ff': 1}     RMSE 0.0947 | 各 wo 最好: 5:0.1173 10:0.1088 20:0.1006 28:0.0976 40:0.0951 56:0.0947
+  C-lin         最优 {'wo': 56, 'beta': 0.5, 'fc': 5.0}   RMSE 0.0976 | 各 wo 最好: 5:0.1261 10:0.1106 20:0.1027 28:0.0998 40:0.0976 56:0.0976
+  R-lstmr       最优 {'wo': 56, 'beta': 1.0, 'eg': 1.0}   RMSE 0.0927 | 各 wo 最好: 5:0.1269 10:0.1088 20:0.1005 28:0.0968 40:0.0939 56:0.0927
+  R0-eps0       固定为 R-lstmr 的参数, eps_gain=0 (fc 5)
+== [cal] 调参 seed 0-2 (24 例/组), 累计 334 s
+  M5-noLSTM     最优 {'wo': 5}                            RMSE 0.1517 | 各 wo 最好: 5:0.1517 10:0.1542 20:0.1703 28:0.1844 40:0.1960 56:0.2190
+  B-lstmd-sim   最优 {'wo': 10, 'beta': 1.0, 'ff': 0}     RMSE 0.1476 | 各 wo 最好: 5:0.1481 10:0.1476 20:0.1574 28:0.1672 40:0.1732 56:0.1854
+  C-lin         最优 {'wo': 5, 'beta': 1.0, 'fc': 5.0}    RMSE 0.1486 | 各 wo 最好: 5:0.1486 10:0.1576 20:0.1798 28:0.2020 40:0.2516 56:0.3479
+  R-lstmr       最优 {'wo': 5, 'beta': 1.0, 'eg': 1.0}    RMSE 0.1448 | 各 wo 最好: 5:0.1448 10:0.1454 20:0.1549 28:0.1669 40:0.1808 56:0.2217
+  R0-eps0       固定为 R-lstmr 的参数, eps_gain=0 (fc 2)
+
+== 测试 seed 100-104 (40 例/环境), 累计 372 s
+   相对 = 配对 RMSE 比 -1 的均值(基准 = 重调 M5-noLSTM); 胜 = RMSE 严格更小的例数; p = Wilcoxon 符号秩(双侧);
+   vsC = 相对 C-lin 的配对 % 与胜场; u饱和 = |u|>=49.5 占比; dsat = d_r^c 饱和拍数占比;
+   vsB = 相对 B-lstmd-sim; e_now = RMSE(d_hat_r,k - d_r,k+3), e_cmp = RMSE(d_r^c_k - d_r,k+3),
+   e_D = RMSE(Delta_k - (d_r,k+3 - d_r,k)), Delta_k = 实际注入的超前量(级, t>=5 s, d_r 为仿真真值, 含 beta)
+  env  方法                RMSE       相对   胜/40        p      vsC(%/胜)      vsB(%/胜)    u饱和   dsat  e_now  e_cmp    e_D
+  nom  M5-noLSTM       0.1016    +0.0%      0  1.0e+00   +0.2%/17      +5.4%/5      0.00%  0.00%   2.58   2.58   0.97
+  nom  B-lstmd-sim     0.0967    -4.8%     35  2.7e-08   -4.4%/23      +0.0%/0      0.00%  0.00%   2.62   2.58   1.06
+  nom  C-lin           0.1025    +1.0%     23  7.4e-01   +0.0%/0       +6.7%/17     0.00%  0.00%   2.61   2.94   1.09
+  nom  R-lstmr         0.0968    -4.4%     33  2.0e-06   -4.2%/24      +0.6%/16     0.00%  0.00%   2.60   2.64   1.08
+  nom  R0-eps0         0.1161   +15.4%     13  1.5e-03  +13.4%/5      +22.4%/9      0.00%  0.01%   2.69   3.74   1.85
+  [nom] R-lstmr vs B-lstmd-sim Wilcoxon p = 4.6e-01
+
+  cal  M5-noLSTM       0.1526    +0.0%      0  1.0e+00   +1.9%/14      +3.3%/11     0.00%  0.00%   2.53   2.53   1.17
+  cal  B-lstmd-sim     0.1500    -2.4%     29  8.9e-02   -0.6%/24      +0.0%/0      0.00%  0.00%   2.36   2.40   1.31
+  cal  C-lin           0.1501    -1.8%     26  4.1e-03   +0.0%/0       +1.3%/16     0.00%  0.00%   2.55   2.41   1.18
+  cal  R-lstmr         0.1493    -2.2%     28  1.9e-03   -0.3%/22      +0.9%/17     0.00%  0.00%   2.55   2.56   1.33
+  cal  R0-eps0         0.1513    -1.0%     25  1.9e-01   +0.9%/14      +2.1%/15     0.00%  0.00%   2.53   2.43   1.20
+  [cal] R-lstmr vs B-lstmd-sim Wilcoxon p = 9.5e-01
+
+分场景相对重调 M5-noLSTM(%, f0=0.5/1/1.5/2):
+  [nom] steady  B-lstmd-sim     -4.4   +1.4   -3.7  -14.2
+  [nom] steady  C-lin           -4.2   -4.9   +3.4  +12.8
+  [nom] steady  R-lstmr         -4.4   +2.1   -3.1  -10.8
+  [nom] steady  R0-eps0         +4.7   +9.5  +12.8  +55.2
+  [nom] switch  B-lstmd-sim     -4.7   -1.7   -4.9   -6.2
+  [nom] switch  C-lin          -12.3   -9.6   +8.4  +14.1
+  [nom] switch  R-lstmr         -4.8   -5.6   -3.8   -4.5
+  [nom] switch  R0-eps0        -13.1   -9.8  +22.4  +42.0
+  [cal] steady  B-lstmd-sim     -2.9   -5.7   -7.8  -10.5
+  [cal] steady  C-lin           -2.2   -3.0   -4.5   -2.6
+  [cal] steady  R-lstmr         -1.1   +1.7   -3.2   -6.7
+  [cal] steady  R0-eps0         -1.3   -2.1   -1.8   -3.2
+  [cal] switch  B-lstmd-sim     -6.0  +15.3   +3.9   -5.1
+  [cal] switch  C-lin           -3.4   +1.8   +0.5   -0.9
+  [cal] switch  R-lstmr         -2.2   +2.3   -2.2   -6.4
+  [cal] switch  R0-eps0         -2.2   +3.8   +0.3   -1.2
+总耗时 372 s
