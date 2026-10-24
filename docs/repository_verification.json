@@ -1,0 +1,35 @@
+{
+  "checked_on": "2026-10-24",
+  "source_commit_before_video_fix": "beba9e371843515b07d8aa39956057d9b482ca4d",
+  "scripts": [
+    {
+      "script": "scripts/check_reproduction.py",
+      "exit_code": 0
+    },
+    {
+      "script": "scripts/plot_flight.py",
+      "exit_code": 0
+    },
+    {
+      "script": "scripts/plot_simulation.py",
+      "exit_code": 0
+    }
+  ],
+  "scope": [
+    "four flight RMSEs at 5-28s",
+    "one 30-s MPC-DS trace compared to frozen trace",
+    "flight plotting script",
+    "simulation plotting script"
+  ],
+  "flight_data": "processed yaw/pitch/reference CSV series; not complete raw experiment archives",
+  "video": {
+    "path": "media/supplementary-video-1.mp4",
+    "sha256": "21365b7b75ea00f5b6bf09306ac31b28525e5de0adc97f02765419807c15112d",
+    "copied_without_reencoding": true,
+    "duration_s": 21,
+    "codec": "H.264",
+    "pixel_format": "yuv420p",
+    "full_decode_exit": 0
+  },
+  "video_page": "https://awilonk.github.io/airborne-gimbal-mpc-ds/"
+}

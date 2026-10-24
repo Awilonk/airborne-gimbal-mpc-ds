@@ -5,33 +5,57 @@
       "bytes": 36,
       "sha256": "1b9854594120d2dcac0310711d2c90a4bac2bc59a9d77137f55cc258784b41ab"
     },
-    "plot-flight-check.txt": {
-      "bytes": 2223,
-      "sha256": "318edbc7c52fadad9b2048be8e4a4192a5377d098fa8a1366be60e5d53b0af7e"
-    },
-    "plot-simulation-check.txt": {
-      "bytes": 74,
-      "sha256": "2002178f72cc42d64105ed16ba5a2f67c80db97cc491b681ee5be2fea453fe98"
-    },
     "README.md": {
-      "bytes": 5453,
-      "sha256": "f46f04dfae0aea8cddad6dbf457a25061fa054047876764e744c9cf360fd3278"
+      "bytes": 6562,
+      "sha256": "c2daf0ad7b5d6f21d9835ee54184d81f29e08c6fdb33030a02f89dac7b427c39"
     },
-    "reproduction-check.txt": {
-      "bytes": 84,
-      "sha256": "1c0a6fd1991b48f85a37e07db2d39b45b05b33a736b0f7eea7553a6ddf1e5a26"
+    "data/flight/ladrc.csv": {
+      "bytes": 131474,
+      "sha256": "deae9c646f40a37aaefcf3e3d3540cddc6a9f72bd9bf70fc0ff903ed9f4e1407"
     },
-    "requirements-training.txt": {
-      "bytes": 31,
-      "sha256": "cc42956cb74f9e03fe490c016452115955ddb191587682609f0a056e7dd5d638"
+    "data/flight/metrics.json": {
+      "bytes": 1325,
+      "sha256": "2678e69b288d6745c9351b0bc97abcd56ed098fdea5eada697cea869fb3e8187"
     },
-    "requirements.txt": {
-      "bytes": 40,
-      "sha256": "48061e7fa7686b876b0221aaf663c6576c4aacc7227c1bb192d6250c5d037494"
+    "data/flight/nolearn.csv": {
+      "bytes": 131264,
+      "sha256": "4759041ae4b538917c760d36c28727530ee2e10981b2c00c6b837a176595a07d"
+    },
+    "data/flight/pid.csv": {
+      "bytes": 132021,
+      "sha256": "1e2e3cc377ab8e1461a0601cd27fd59a59379441a437ef517ad1e04639f565bb"
+    },
+    "data/flight/plain-pid-trial-protocol.json": {
+      "bytes": 4530,
+      "sha256": "98171fc97f0d4cd0aedea542fbf1a433508b2fafdbde1c0d12397c1310652a4a"
+    },
+    "data/flight/proposed.csv": {
+      "bytes": 131121,
+      "sha256": "a674a9269b07ce0c10b3fbdaec2049e8879d121c37243eed20786f6a37c9716e"
+    },
+    "docs/.nojekyll": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "docs/index.html": {
+      "bytes": 5192,
+      "sha256": "c831b6d82ee2701501082e9e1342e1ad49650f62a0ca0b046f0723adee773168"
+    },
+    "docs/media/submission-video-preview.jpg": {
+      "bytes": 149286,
+      "sha256": "e5affafbd193e5b1979e7df3fccd14cbc1967946785da97529d809a1013f35a5"
+    },
+    "docs/media/supplementary-video-1.mp4": {
+      "bytes": 8615893,
+      "sha256": "21365b7b75ea00f5b6bf09306ac31b28525e5de0adc97f02765419807c15112d"
     },
     "docs/method-names.json": {
       "bytes": 448,
       "sha256": "f10919a298200a4aadd6e23b7db8112c3718b66d3b0f19eecc2a052bb244c1f2"
+    },
+    "docs/repository_verification.json": {
+      "bytes": 995,
+      "sha256": "e446242978a5aaafee29502b992a75ae424cc9b3c49f21cf6902afc891efb456"
     },
     "experimental_controller/angle_feedback.py": {
       "bytes": 5247,
@@ -141,13 +165,13 @@
       "bytes": 4011,
       "sha256": "9e4a4f3b809745353b30f85fdcebe5ae9bcd31a526a87a88a66458eb07dba6ea"
     },
-    "experimental_controller/training_data_guard.py": {
-      "bytes": 2942,
-      "sha256": "fd793492d6d224fb5da8749c90e6c88eb68133294dbce41611f99c7c43fa207a"
-    },
     "experimental_controller/train_paper_network.py": {
       "bytes": 8759,
       "sha256": "d16303703d7df9dc31607f8cb4ce642de0276d939831e9e2da14fbfc57020c7f"
+    },
+    "experimental_controller/training_data_guard.py": {
+      "bytes": 2942,
+      "sha256": "fd793492d6d224fb5da8749c90e6c88eb68133294dbce41611f99c7c43fa207a"
     },
     "experimental_controller/trial_core.py": {
       "bytes": 11615,
@@ -209,6 +233,14 @@
       "bytes": 280020,
       "sha256": "aaa3fd7ff5776aa4d78e006c0e5126c9e977e7ceba7d0380b05c6371184ab330"
     },
+    "media/AST_四方法同屏_朴素PID更新_21秒_20261024_lyk.mp4": {
+      "bytes": 8629472,
+      "sha256": "d9329a852ee5501494f438083e358b8a24074534393cd468f087454fbea03921"
+    },
+    "media/four-method-comparison-preview.jpg": {
+      "bytes": 189099,
+      "sha256": "552e0717412c437abc9687a7ab3a217372c5991c37f977a8cde569d5ae348abc"
+    },
     "media/four-method-flight-clips-4x.mp4": {
       "bytes": 13843735,
       "sha256": "bbb9e7de3254735beaf12e0b21531e5731deca03dbd7116d6ea0fd3d57b9d494"
@@ -220,6 +252,34 @@
     "media/proposed-preview.jpg": {
       "bytes": 77008,
       "sha256": "ad57e25266179b09eb3b927979f718a93c2770c636580e01ad77e7ae34854f85"
+    },
+    "media/submission-video-preview.jpg": {
+      "bytes": 149286,
+      "sha256": "e5affafbd193e5b1979e7df3fccd14cbc1967946785da97529d809a1013f35a5"
+    },
+    "media/supplementary-video-1.mp4": {
+      "bytes": 8615893,
+      "sha256": "21365b7b75ea00f5b6bf09306ac31b28525e5de0adc97f02765419807c15112d"
+    },
+    "plot-flight-check.txt": {
+      "bytes": 2223,
+      "sha256": "318edbc7c52fadad9b2048be8e4a4192a5377d098fa8a1366be60e5d53b0af7e"
+    },
+    "plot-simulation-check.txt": {
+      "bytes": 74,
+      "sha256": "2002178f72cc42d64105ed16ba5a2f67c80db97cc491b681ee5be2fea453fe98"
+    },
+    "reproduction-check.txt": {
+      "bytes": 84,
+      "sha256": "1c0a6fd1991b48f85a37e07db2d39b45b05b33a736b0f7eea7553a6ddf1e5a26"
+    },
+    "requirements-training.txt": {
+      "bytes": 31,
+      "sha256": "cc42956cb74f9e03fe490c016452115955ddb191587682609f0a056e7dd5d638"
+    },
+    "requirements.txt": {
+      "bytes": 40,
+      "sha256": "48061e7fa7686b876b0221aaf663c6576c4aacc7227c1bb192d6250c5d037494"
     },
     "scripts/check_reproduction.py": {
       "bytes": 1053,
@@ -337,26 +397,6 @@
       "bytes": 38950,
       "sha256": "000e4cd2d98cc98fdbda0a844813905575c24a84f8ebe100b28128c29c6bd7a6"
     },
-    "simulation/sim_zr10.py": {
-      "bytes": 8864,
-      "sha256": "7d55ca9da0e3d2533f909732ca2fc245a64a228d9f8fcb246067ceb48df239ef"
-    },
-    "simulation/train_lead.py": {
-      "bytes": 8261,
-      "sha256": "63002141be0d129c028af751127339891f45156bda2cbcfbfd14e565138a6382"
-    },
-    "simulation/train_lead_resid.py": {
-      "bytes": 7970,
-      "sha256": "7abadf6a572ae5a58258acc1bc2d80730b5559d72420bd1d053145b8914f955a"
-    },
-    "simulation/train_lstm.py": {
-      "bytes": 7576,
-      "sha256": "d7a411b20655a458e8795a4612180fc87870a33609c4c28af2959df5771f020b"
-    },
-    "simulation/zr10_ctrl.py": {
-      "bytes": 11689,
-      "sha256": "32194b36dd0dda78a277a7bbb46ec39506e5c14b1568ad2bad24e92c14216e33"
-    },
     "simulation/paper_sec4_20261022/make_sec4.py": {
       "bytes": 11762,
       "sha256": "2f70d416e5df9b7a3f7a85a0d74bcc1f0ebbff748f6e4d8fa736d4f2eae1f67c"
@@ -385,38 +425,25 @@
       "bytes": 4385,
       "sha256": "64a2090f97d43c644c4a94adc6b084b5336cc514ef85476163540790a927032a"
     },
-    "data/flight/ladrc.csv": {
-      "bytes": 131474,
-      "sha256": "deae9c646f40a37aaefcf3e3d3540cddc6a9f72bd9bf70fc0ff903ed9f4e1407"
+    "simulation/sim_zr10.py": {
+      "bytes": 8864,
+      "sha256": "7d55ca9da0e3d2533f909732ca2fc245a64a228d9f8fcb246067ceb48df239ef"
     },
-    "data/flight/metrics.json": {
-      "bytes": 1325,
-      "sha256": "2678e69b288d6745c9351b0bc97abcd56ed098fdea5eada697cea869fb3e8187"
+    "simulation/train_lead.py": {
+      "bytes": 8261,
+      "sha256": "63002141be0d129c028af751127339891f45156bda2cbcfbfd14e565138a6382"
     },
-    "data/flight/nolearn.csv": {
-      "bytes": 131264,
-      "sha256": "4759041ae4b538917c760d36c28727530ee2e10981b2c00c6b837a176595a07d"
+    "simulation/train_lead_resid.py": {
+      "bytes": 7970,
+      "sha256": "7abadf6a572ae5a58258acc1bc2d80730b5559d72420bd1d053145b8914f955a"
     },
-    "data/flight/pid.csv": {
-      "bytes": 132021,
-      "sha256": "1e2e3cc377ab8e1461a0601cd27fd59a59379441a437ef517ad1e04639f565bb"
+    "simulation/train_lstm.py": {
+      "bytes": 7576,
+      "sha256": "d7a411b20655a458e8795a4612180fc87870a33609c4c28af2959df5771f020b"
     },
-    "data/flight/plain-pid-trial-protocol.json": {
-      "bytes": 4530,
-      "sha256": "98171fc97f0d4cd0aedea542fbf1a433508b2fafdbde1c0d12397c1310652a4a"
-    },
-    "data/flight/proposed.csv": {
-      "bytes": 131121,
-      "sha256": "a674a9269b07ce0c10b3fbdaec2049e8879d121c37243eed20786f6a37c9716e"
-    },
-    "media/AST_\u56db\u65b9\u6cd5\u540c\u5c4f_\u6734\u7d20PID\u66f4\u65b0_21\u79d2_20261024_lyk.mp4": {
-      "bytes": 8629472,
-      "sha256": "d9329a852ee5501494f438083e358b8a24074534393cd468f087454fbea03921"
-    },
-    "media/four-method-comparison-preview.jpg": {
-      "bytes": 189099,
-      "sha256": "552e0717412c437abc9687a7ab3a217372c5991c37f977a8cde569d5ae348abc"
+    "simulation/zr10_ctrl.py": {
+      "bytes": 11689,
+      "sha256": "32194b36dd0dda78a277a7bbb46ec39506e5c14b1568ad2bad24e92c14216e33"
     }
-  },
-  "archive_sha256": "15c559c3987777edd68c0e61217c890e118a3233fb5b74beb71491bf3739452e"
+  }
 }

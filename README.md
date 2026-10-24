@@ -6,15 +6,19 @@ The repository contains the simulation controllers, frozen test results, learned
 
 ## Demonstration videos
 
-- [21-second four-method comparison — plain-PID data updated](media/AST_%E5%9B%9B%E6%96%B9%E6%B3%95%E5%90%8C%E5%B1%8F_%E6%9C%B4%E7%B4%A0PID%E6%9B%B4%E6%96%B0_21%E7%A7%92_20261024_lyk.mp4)
-- [Proposed-method hovering footage (4x playback)](media/proposed-hover-4x.mp4)
-- [Four recorded flight clips in sequence (4x playback)](media/four-method-flight-clips-4x.mp4)
+**[Watch online with video controls](https://awilonk.github.io/airborne-gimbal-mpc-ds/)**
 
-[![21-second four-method comparison](media/four-method-comparison-preview.jpg)](media/AST_%E5%9B%9B%E6%96%B9%E6%B3%95%E5%90%8C%E5%B1%8F_%E6%9C%B4%E7%B4%A0PID%E6%9B%B4%E6%96%B0_21%E7%A7%92_20261024_lyk.mp4)
+- [Download the revised 21-second four-method comparison](https://raw.githubusercontent.com/Awilonk/airborne-gimbal-mpc-ds/main/media/supplementary-video-1.mp4)
+- [Download Proposed-method hovering footage (4x playback)](https://raw.githubusercontent.com/Awilonk/airborne-gimbal-mpc-ds/main/media/proposed-hover-4x.mp4)
+- [Download four recorded flight clips in sequence (4x playback)](https://raw.githubusercontent.com/Awilonk/airborne-gimbal-mpc-ds/main/media/four-method-flight-clips-4x.mp4)
 
-The 21-second video above is the author-provided comparison, uploaded byte-for-byte without editing. Its comparison panels show recordings from separate trials; the displayed metrics use the updated plain-PID trial.
+[![Watch the four-method comparison](media/submission-video-preview.jpg)](https://awilonk.github.io/airborne-gimbal-mpc-ds/)
 
-The sequential footage video concatenates four separate hover trials in the order Proposed, learned-residual disabled, earlier PID, and LADRC (7.5 s per clip). It is not a simultaneous flight. The retained PID imagery comes from the earlier PID recording; the **plain-PID numerical baseline in the paper is the later 07:50 batch**, and is not synchronized to that earlier PID image. Use `data/flight/pid.csv` for the reported plain-PID metrics.
+GitHub's repository file viewer may refuse to preview these MP4 files because of their size. Use the **Watch online** page or download an MP4 instead.
+
+The main video is the revised submission copy, with the current paper title and method names. It has been copied byte-for-byte from the approved video. Its panels show recordings from separate trials, with metrics from the updated plain-PID data. The earlier author-provided 21-second file remains in `media/` for provenance.
+
+The sequential footage concatenates four separate hover trials in the order Proposed, learned-residual disabled, earlier PID, and LADRC (7.5 s per clip). It is not a simultaneous flight. The retained PID imagery comes from the earlier recording; the **plain-PID numerical baseline in the paper is the later 07:50 batch**, and is not synchronized to that earlier PID image. Use `data/flight/pid.csv` for the reported plain-PID metrics.
 
 ## Reproduce the figures
 
@@ -57,6 +61,14 @@ The flight data contain one 30-s trial per method. RMSE uses original samples ov
 MPC-DS w/o LR disables only the learned lead residual and retains the linear lead term. The main simulation's model-based MPC-DS core disables learning and the complete lead correction; it is a different ablation scope. The frequency-preview comparison implements the nominal certainty-equivalence structure of the cited method, not its complete tube-robust algorithm. The manuscript provides the full attribution and assumptions.
 
 One trial per method and different recording batches do not establish statistical significance or broad flight generalization. Controlled simulation tests assess disturbance separation and frequency adaptation; the hover data show implementation and two-axis tracking in the tested condition.
+
+## Verification
+
+On 2026-10-24, `check_reproduction.py`, `plot_flight.py`, and `plot_simulation.py` all completed successfully in a fresh checkout. The four flight RMSEs and one representative 30-s MPC-DS simulation trace matched the frozen paper data. This check does not re-run every training or Monte Carlo sweep. See `docs/repository_verification.json`.
+
+## Verification
+
+On 2026-10-24, `check_reproduction.py`, `plot_flight.py`, and `plot_simulation.py` all completed successfully in a fresh checkout. The four flight RMSEs and one representative 30-s MPC-DS simulation trace matched the frozen paper data. This check does not re-run every training or Monte Carlo sweep. See `docs/repository_verification.json`.
 
 ## Provenance
 
