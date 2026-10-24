@@ -6,12 +6,15 @@ The repository contains the simulation controllers, frozen test results, learned
 
 ## Demonstration videos
 
+- [21-second four-method comparison — plain-PID data updated](media/AST_%E5%9B%9B%E6%96%B9%E6%B3%95%E5%90%8C%E5%B1%8F_%E6%9C%B4%E7%B4%A0PID%E6%9B%B4%E6%96%B0_21%E7%A7%92_20261024_lyk.mp4)
 - [Proposed-method hovering footage (4x playback)](media/proposed-hover-4x.mp4)
 - [Four recorded flight clips in sequence (4x playback)](media/four-method-flight-clips-4x.mp4)
 
-![Proposed-method hovering frame](media/proposed-preview.jpg)
+[![21-second four-method comparison](media/four-method-comparison-preview.jpg)](media/AST_%E5%9B%9B%E6%96%B9%E6%B3%95%E5%90%8C%E5%B1%8F_%E6%9C%B4%E7%B4%A0PID%E6%9B%B4%E6%96%B0_21%E7%A7%92_20261024_lyk.mp4)
 
-The second video concatenates four separate hover trials in the order Proposed, learned-residual disabled, earlier PID, and LADRC (7.5 s per clip). It is not a simultaneous flight. The retained PID imagery comes from the earlier PID recording; the **plain-PID numerical baseline in the paper is the later 07:50 batch**, and is not synchronized to that earlier PID image. Use `data/flight/pid.csv` for the reported plain-PID metrics.
+The 21-second video above is the author-provided comparison, uploaded byte-for-byte without editing. Its comparison panels show recordings from separate trials; the displayed metrics use the updated plain-PID trial.
+
+The sequential footage video concatenates four separate hover trials in the order Proposed, learned-residual disabled, earlier PID, and LADRC (7.5 s per clip). It is not a simultaneous flight. The retained PID imagery comes from the earlier PID recording; the **plain-PID numerical baseline in the paper is the later 07:50 batch**, and is not synchronized to that earlier PID image. Use `data/flight/pid.csv` for the reported plain-PID metrics.
 
 ## Reproduce the figures
 
